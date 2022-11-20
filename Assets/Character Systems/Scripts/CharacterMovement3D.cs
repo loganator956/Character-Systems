@@ -16,6 +16,8 @@ namespace CharacterSystems.Movement
         public float WalkSpeed = 3.0f;
         public float SprintSpeed = 6.0f;
         public float MaxTurnSpeed = 720.0f;
+        public float JumpForce = 10f;
+        public float JumpForceDegradation = 10f;
 
         [Header("Physics Properties")]
         public float GravityAcceleration = 9.8f;
@@ -56,6 +58,8 @@ namespace CharacterSystems.Movement
             }
         }
 
+        private bool _isJumpKeyPressed;
+
         public Vector3 CurrentDirection { get { return transform.forward; } }
 
         private CharacterController _charController;
@@ -68,6 +72,8 @@ namespace CharacterSystems.Movement
         {
             _charController= GetComponent<CharacterController>();
         }
+
+        private float _currentJumpForce = 0f;
 
         #region User Input
         private Vector2 _inputs;
@@ -89,6 +95,20 @@ namespace CharacterSystems.Movement
         public void OnSprint(InputValue value)
         {
             SetSprint(value.Get<float>() == 1f);
+        }
+
+        private void SetJump(bool isJump)
+        {
+            _isJumpKeyPressed = isJump;
+            if (isJump)
+            {
+                _currentJumpForce = JumpForce;
+            }
+        }
+
+        public void OnJump(InputValue value)
+        {
+            SetJump(value.Get<float>() == 1f);
         }
         #endregion
 
@@ -113,6 +133,21 @@ namespace CharacterSystems.Movement
             else
             {
                 moveVector.y = 0f;
+            }
+
+            // jumping
+            if (_currentJumpForce > 0f)
+            {
+                if (!_isJumpKeyPressed)
+                {
+                    // cancel jump, take away much quicker
+                    _currentJumpForce -= JumpForceDegradation * 2 * Time.deltaTime;
+                }
+                else
+                {
+                    _currentJumpForce -= JumpForceDegradation* Time.deltaTime;
+                }
+                moveVector.y = _currentJumpForce;
             }
 
             CurrentVelocity= moveVector;
