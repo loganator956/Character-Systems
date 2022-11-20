@@ -16,9 +16,6 @@ namespace CharacterSystems.Movement
         public float WalkSpeed = 3.0f;
         public float SprintSpeed = 6.0f;
         public float MaxTurnSpeed = 720.0f;
-        public float JumpAcceleration = 9.8f;
-        public float MaxJumpVelocity = 15f;
-        public float MaxJumpLength = 0.5f;
 
         [Header("Physics Properties")]
         public float GravityAcceleration = 9.8f;
