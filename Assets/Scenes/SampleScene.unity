@@ -411,9 +411,9 @@ GameObject:
   - component: {fileID: 1701940033}
   - component: {fileID: 1701940032}
   - component: {fileID: 1701940031}
-  - component: {fileID: 1701940037}
   - component: {fileID: 1701940036}
   - component: {fileID: 1701940035}
+  - component: {fileID: 1701940038}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -493,7 +493,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701940030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.45, z: 0}
+  m_LocalPosition: {x: 0, y: 19.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -608,24 +608,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WalkSpeed: 4
-  RunSpeed: 8
+  SprintSpeed: 6
   MaxTurnSpeed: 720
---- !u!54 &1701940037
-Rigidbody:
+  GravityAcceleration: 9.8
+  TerminalFallVelocity: 10
+  CharacterHeight: 1.1
+  OnIsSprintingChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!143 &1701940038
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701940030}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 50
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 1
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1769784433
 GameObject:
   m_ObjectHideFlags: 0
