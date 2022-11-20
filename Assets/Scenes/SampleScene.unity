@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-18148
+  m_Name: pb_Mesh24252
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -834,6 +834,7 @@ GameObject:
   - component: {fileID: 1701940036}
   - component: {fileID: 1701940035}
   - component: {fileID: 1701940038}
+  - component: {fileID: 1701940039}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -1029,7 +1030,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkSpeed: 4
   SprintSpeed: 8
-  MaxTurnSpeed: 720
+  JumpForce: 10
+  JumpForceDegradation: 10
   GravityAcceleration: 9.8
   TerminalFallVelocity: 10
   CharacterHeight: 1.1
@@ -1057,6 +1059,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1701940039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701940030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddcdab6fe2e82ed4eb075061e6565968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxTurnSpeed: 720
 --- !u!1 &1769784433
 GameObject:
   m_ObjectHideFlags: 0

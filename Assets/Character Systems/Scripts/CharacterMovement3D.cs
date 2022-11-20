@@ -15,7 +15,7 @@ namespace CharacterSystems.Movement
         [Header("Movement Properties")]
         public float WalkSpeed = 3.0f;
         public float SprintSpeed = 6.0f;
-        public float MaxTurnSpeed = 720.0f;
+        
         public float JumpForce = 10f;
         public float JumpForceDegradation = 10f;
 
@@ -114,7 +114,6 @@ namespace CharacterSystems.Movement
 
         private void Update()
         {
-            RotateTowardDirection();
             // ground detection
             IsGrounded = Physics.Raycast(transform.position, Vector3.down, CharacterHeight);
 
@@ -153,12 +152,6 @@ namespace CharacterSystems.Movement
             CurrentVelocity= moveVector;
 
             _charController.Move(CurrentVelocity * Time.deltaTime);
-        }
-
-        private void RotateTowardDirection()
-        {
-            if (_inputs == Vector2.zero) return;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(InputToWorldDirection(_inputs), Vector3.up), MaxTurnSpeed * Time.deltaTime);
         }
 
         private Vector3 InputToWorldDirection(Vector2 input)
