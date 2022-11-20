@@ -1028,12 +1028,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WalkSpeed: 4
-  SprintSpeed: 6
+  SprintSpeed: 8
   MaxTurnSpeed: 720
   GravityAcceleration: 9.8
   TerminalFallVelocity: 10
   CharacterHeight: 1.1
   OnIsSprintingChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnIsGroundedChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!143 &1701940038
