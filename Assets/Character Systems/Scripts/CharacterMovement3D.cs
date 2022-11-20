@@ -16,6 +16,9 @@ namespace CharacterSystems.Movement
         public float WalkSpeed = 3.0f;
         public float SprintSpeed = 6.0f;
         public float MaxTurnSpeed = 720.0f;
+        public float JumpAcceleration = 9.8f;
+        public float MaxJumpVelocity = 15f;
+        public float MaxJumpLength = 0.5f;
 
         [Header("Physics Properties")]
         public float GravityAcceleration = 9.8f;
@@ -25,7 +28,7 @@ namespace CharacterSystems.Movement
         public float CharacterHeight = 1.0f;
 
         [Header("Events")]
-        public UnityEvent<bool> OnIsSprintingChanged;
+        public UnityEvent<bool> OnIsSprintingChanged, OnIsGroundedChanged;
 
         private Vector3 _cameraForward = Vector3.forward;
         public Vector3 CameraForward
@@ -56,22 +59,13 @@ namespace CharacterSystems.Movement
             }
         }
 
-        private bool _isJumping;
-        public bool IsJumping
-        {
-            get { return _isJumping; }
-            private set
-            {
-                _isJumping = value;
-                // TODO: Add a is jumping changed event?
-            }
-        }
-
         public Vector3 CurrentDirection { get { return transform.forward; } }
 
         private CharacterController _charController;
 
         public Vector3 CurrentVelocity { get; private set; }
+
+        private float _jumpRemainingT = 0f;
 
         private void Awake()
         {
@@ -114,12 +108,12 @@ namespace CharacterSystems.Movement
             moveVector.y = CurrentVelocity.y;
             
             // gravity
-            if (!IsGrounded && !IsJumping)
+            if (!IsGrounded)
             {
                 moveVector.y -= GravityAcceleration * Time.deltaTime;
                 moveVector.y = Mathf.Clamp(moveVector.y, -TerminalFallVelocity, TerminalFallVelocity);
             }
-            else if (!IsJumping)
+            else
             {
                 moveVector.y = 0f;
             }
