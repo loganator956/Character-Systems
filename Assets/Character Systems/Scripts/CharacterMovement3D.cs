@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 namespace CharacterSystems.Movement
 {
     [RequireComponent(typeof(CharacterController))]
-    public class CharacterMovement3D : MonoBehaviour, IMovableCharacter
+    public class CharacterMovement3D : MonoBehaviour
     {
         [Header("Movement Properties")]
         public float WalkSpeed = 3.0f;
