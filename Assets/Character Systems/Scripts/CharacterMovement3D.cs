@@ -51,7 +51,6 @@ namespace CharacterSystems.Movement
             private set
             {
                 _isGrounded = value;
-                // TODO: Add is grounded changed event?
             }
         }
 
@@ -97,7 +96,7 @@ namespace CharacterSystems.Movement
         private void SetJump(bool isJump)
         {
             _isJumpKeyPressed = isJump;
-            if (isJump)
+            if (CheckCanJump() && isJump)
             {
                 _currentJumpForce = JumpForce;
             }
@@ -149,6 +148,12 @@ namespace CharacterSystems.Movement
             CurrentVelocity= moveVector;
 
             _charController.Move(CurrentVelocity * Time.deltaTime);
+        }
+
+        private bool CheckCanJump()
+        {
+            // TODO: Could add multi-jumps here, or something
+            return IsGrounded;
         }
 
         private Vector3 InputToWorldDirection(Vector2 input)
