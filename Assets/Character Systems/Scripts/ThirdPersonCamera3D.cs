@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 namespace CharacterSystems.Movement
 {
     [RequireComponent(typeof(CharacterMovement3D))]
+    /// <summary>
+    /// Third person camera movement component for 3D.
+    /// </summary>
     public class ThirdPersonCamera3D : MonoBehaviour
     {
         [Header("Camera Movement Properties")]
