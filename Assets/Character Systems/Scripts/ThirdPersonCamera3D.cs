@@ -29,7 +29,7 @@ namespace CharacterSystems.Movement
         /// <summary>
         /// A curve that can be used to manipulate the distance of camera to player (VALUE) according to the X (Vertical) axis rotation (TIME). VALUE is the *multiplier* of distance
         /// </summary>
-        public AnimationCurve XRotationToDistanceCurve = new AnimationCurve(new Keyframe(-5f, 0.5f), new Keyframe(35f, 0.9f, 0.005f, 0.005f), new Keyframe(90f, 1f));
+        public AnimationCurve XRotationToDistanceCurve = new AnimationCurve(new Keyframe(-5f, 0.5f), new Keyframe(10f, 0.9f, 0.005f, 0.005f), new Keyframe(90f, 1f));
         /// <summary>
         /// The normal distance of camera to the player
         /// </summary>
