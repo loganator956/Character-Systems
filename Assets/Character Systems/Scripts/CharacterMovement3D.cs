@@ -12,7 +12,7 @@ namespace CharacterSystems.Movement
         [Header("Movement Properties")]
         public float WalkSpeed = 3.0f;
         public float SprintSpeed = 6.0f;
-        
+
         public float JumpForce = 10f;
         public float JumpForceDegradation = 10f;
 
@@ -24,13 +24,24 @@ namespace CharacterSystems.Movement
         public float CharacterHeight = 1.0f;
 
         [Header("Events")]
-        public UnityEvent<bool> OnIsSprintingChanged, OnIsGroundedChanged;
+        public UnityEvent<bool> IsMovingChangedEvent, OnIsSprintingChanged, OnIsGroundedChanged;
 
         private Vector3 _cameraForward = Vector3.forward;
         public Vector3 CameraForward
         {
             get { return _cameraForward; }
             set { _cameraForward = new Vector3(value.x, 0f, value.z).normalized; }
+        }
+
+        private bool _isMoving;
+        public bool IsMoving
+        {
+            get { return _isMoving; }
+            private set
+            {
+                _isMoving = value;
+                IsMovingChangedEvent.Invoke(IsMoving);
+            }
         }
 
         private bool _isSprinting;
@@ -66,7 +77,7 @@ namespace CharacterSystems.Movement
 
         private void Awake()
         {
-            _charController= GetComponent<CharacterController>();
+            _charController = GetComponent<CharacterController>();
         }
 
         private float _currentJumpForce = 0f;
@@ -75,7 +86,7 @@ namespace CharacterSystems.Movement
         private Vector2 _inputs;
         public void Move(Vector2 inputs)
         {
-            _inputs= inputs.normalized;
+            _inputs = inputs.normalized;
         }
 
         public void OnMove(InputValue value)
@@ -116,9 +127,9 @@ namespace CharacterSystems.Movement
             // horizontal walking
             Vector3 moveVector = InputToWorldDirection(_inputs);
             moveVector *= IsSprinting ? SprintSpeed : WalkSpeed;
-            
+
             moveVector.y = CurrentVelocity.y;
-            
+
             // gravity
             if (!IsGrounded)
             {
@@ -140,12 +151,12 @@ namespace CharacterSystems.Movement
                 }
                 else
                 {
-                    _currentJumpForce -= JumpForceDegradation* Time.deltaTime;
+                    _currentJumpForce -= JumpForceDegradation * Time.deltaTime;
                 }
                 moveVector.y = _currentJumpForce;
             }
 
-            CurrentVelocity= moveVector;
+            CurrentVelocity = moveVector;
 
             _charController.Move(CurrentVelocity * Time.deltaTime);
         }
