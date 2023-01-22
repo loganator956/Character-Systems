@@ -11,7 +11,7 @@ namespace CharacterSystems.Movement
         public float CameraVerticalSensitivity = 20f;
         public float MinXRotation = -5f;
         public float MaxXRotation = 90f;
-        public AnimationCurve XRotationToDistanceCurve = AnimationCurve.Constant(-5f, 90f, 1f);
+        public AnimationCurve XRotationToDistanceCurve = new AnimationCurve(new Keyframe(-5f, 0.5f), new Keyframe(35f, 0.9f, 0.005f, 0.005f), new Keyframe(90f, 1f));
         public float CameraStandardDistance = 5f;
         [Header("Component References")]
         public Transform CameraTransform;
@@ -30,7 +30,12 @@ namespace CharacterSystems.Movement
             _characterMovement3D = GetComponent<CharacterMovement3D>();
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-        }
+
+            if (CameraTransform == null)
+            {
+                Debug.LogWarning("Camera transform is not set, auto-detecting");
+                CameraTransform = Camera.main.transform;
+        }}
 
         private void Update()
         {
