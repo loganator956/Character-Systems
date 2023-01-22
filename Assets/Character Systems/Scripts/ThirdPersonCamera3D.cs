@@ -9,8 +9,11 @@ namespace CharacterSystems.Movement
         [Header("Camera Movement Properties")]
         public float CameraHorizontalSensitivity = 20f;
         public float CameraVerticalSensitivity = 20f;
-        public float MinXRotation = -90f;
+        public float MinXRotation = -5f;
         public float MaxXRotation = 90f;
+        public AnimationCurve XRotationToDistanceCurve = AnimationCurve.Constant(-5f, 90f, 1f);
+        public float CameraStandardDistance = 5f;
+        [Header("Component References")]
         public Transform CameraTransform;
 
         private Vector2 _inputs;
@@ -25,6 +28,8 @@ namespace CharacterSystems.Movement
         private void Awake()
         {
             _characterMovement3D = GetComponent<CharacterMovement3D>();
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void Update()
@@ -34,11 +39,12 @@ namespace CharacterSystems.Movement
             _xAngle += _inputs.y * CameraVerticalSensitivity * Time.deltaTime;
 
             // clamp
-            _yAngle = Mathf.Clamp(_yAngle, 0f, 360f);
+            if (_yAngle > 360) { _yAngle -= 360; } else if (_yAngle < 0) { _yAngle += 360; };
             _xAngle = Mathf.Clamp(_xAngle, MinXRotation, MaxXRotation);
 
             // apply
             CameraTransform.localRotation = Quaternion.Euler(_xAngle, _yAngle, 0f);
+            CameraTransform.position = transform.position + CameraTransform.forward * -1 * CameraStandardDistance * XRotationToDistanceCurve.Evaluate(_xAngle);
             if (_characterMovement3D != null)
             {
                 Vector3 fwd = CameraTransform.forward;
