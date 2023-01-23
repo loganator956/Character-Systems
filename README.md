@@ -12,4 +12,4 @@ As this is in development, features are being added and developed. This is the c
 ## Requirements
 
 - Obviously Unity
-- Recommended to use Unity's Input System Package
+- Unity's Input System Package
