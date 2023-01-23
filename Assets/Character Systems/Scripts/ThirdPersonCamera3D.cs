@@ -10,6 +10,7 @@ namespace CharacterSystems.Movement
     public class ThirdPersonCamera3D : MonoBehaviour
     {
         [Header("Camera Movement Properties")]
+        public Vector3 CameraOffset = Vector3.zero;
         /// <summary>
         /// Controls the sensitivity on the horizontal (Y axis of rotation) axis
         /// </summary>
@@ -73,7 +74,7 @@ namespace CharacterSystems.Movement
 
             // apply
             CameraTransform.localRotation = Quaternion.Euler(_xAngle, _yAngle, 0f);
-            CameraTransform.position = transform.position + CameraTransform.forward * -1 * CameraStandardDistance * XRotationToDistanceCurve.Evaluate(_xAngle);
+            CameraTransform.position = transform.position + CameraOffset + CameraTransform.forward * -1 * CameraStandardDistance * XRotationToDistanceCurve.Evaluate(_xAngle);
             if (_characterMovement3D != null)
             {
                 Vector3 fwd = CameraTransform.forward;
