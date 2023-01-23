@@ -151,8 +151,11 @@ namespace CharacterSystems.Movement
             }
 
             CurrentVelocity = moveVector;
+        }
 
-            _charController.Move(CurrentVelocity * Time.deltaTime);
+        private void FixedUpdate()
+        {
+            _charController.Move(CurrentVelocity * Time.fixedDeltaTime);
         }
 
         private bool CheckCanJump()
