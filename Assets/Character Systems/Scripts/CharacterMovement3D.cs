@@ -2,8 +2,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-// TODO: Add the #if thing to make it work without InputSystem
-
 namespace CharacterSystems.Movement
 {
     [RequireComponent(typeof(CharacterController))]
@@ -67,13 +65,9 @@ namespace CharacterSystems.Movement
 
         private bool _isJumpKeyPressed;
 
-        public Vector3 CurrentDirection { get { return transform.forward; } }
-
         private CharacterController _charController;
 
         public Vector3 CurrentVelocity { get; private set; }
-
-        private float _jumpRemainingT = 0f;
 
         private void Awake()
         {
