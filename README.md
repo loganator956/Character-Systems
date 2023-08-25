@@ -16,5 +16,5 @@ As this is in development, features are being added and developed. This is the c
 
 ## Requirements
 
-- Obviously Unity
-- Unity's Input System Package
+- Unity
+- [Unity's Input System Package](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.7/manual/index.html)
