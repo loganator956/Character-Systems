@@ -20,7 +20,7 @@ namespace CharacterSystems.Movement
 
         [Header("Detection Properties")]
         public float CharacterHeight = 1.0f;
-        
+
         [Header("Polish Properties")]
         public float CoyoteTimeThreshold = 0.2f;
 
@@ -172,7 +172,6 @@ namespace CharacterSystems.Movement
 
         private bool CheckCanJump()
         {
-            // TODO: Could add multi-jumps here, or something
             return IsGrounded || _timeSinceGrounded < CoyoteTimeThreshold;
         }
 
