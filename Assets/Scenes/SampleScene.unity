@@ -1312,9 +1312,21 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4987069632709202536, guid: 141abf86ce70f81439f83c3a12083e0b, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987069632776527142, guid: 141abf86ce70f81439f83c3a12083e0b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4987069632776527143, guid: 141abf86ce70f81439f83c3a12083e0b, type: 3}
       propertyPath: m_Name
       value: ThirdPersonController3D_Sample
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987069632776527143, guid: 141abf86ce70f81439f83c3a12083e0b, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4987069632776527195, guid: 141abf86ce70f81439f83c3a12083e0b, type: 3}
       propertyPath: m_RootOrder
@@ -1359,6 +1371,18 @@ PrefabInstance:
     - target: {fileID: 4987069632776527195, guid: 141abf86ce70f81439f83c3a12083e0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987069632776527197, guid: 141abf86ce70f81439f83c3a12083e0b, type: 3}
+      propertyPath: CharacterHeight
+      value: 1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987069632776527197, guid: 141abf86ce70f81439f83c3a12083e0b, type: 3}
+      propertyPath: JumpLayerMask.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987069632776527197, guid: 141abf86ce70f81439f83c3a12083e0b, type: 3}
+      propertyPath: JumpQueueTimeThreshold
+      value: 44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
