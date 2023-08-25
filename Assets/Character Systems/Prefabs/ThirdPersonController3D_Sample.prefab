@@ -220,6 +220,7 @@ MonoBehaviour:
   GravityAcceleration: 9.8
   TerminalFallVelocity: 10
   CharacterHeight: 1.1
+  CoyoteTimeThreshold: 0.2
   IsMovingChangedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -369,6 +370,7 @@ MonoBehaviour:
   CameraOffset: {x: 0, y: 0.5, z: 0}
   CameraHorizontalSensitivity: 20
   CameraVerticalSensitivity: 20
+  CameraZoomSensitivity: 1
   MinXRotation: -5
   MaxXRotation: 90
   XRotationToDistanceCurve:
@@ -404,5 +406,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  CameraStandardDistance: 5
+  CameraMinDistance: 4
+  CameraMaxDistance: 12
   CameraTransform: {fileID: 0}

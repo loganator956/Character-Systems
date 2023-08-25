@@ -21,6 +21,9 @@ namespace CharacterSystems.Movement
         [Header("Detection Properties")]
         public float CharacterHeight = 1.0f;
 
+        [Header("Polish Properties")]
+        public float CoyoteTimeThreshold = 0.2f;
+
         [Header("Events")]
         public UnityEvent<bool> IsMovingChangedEvent, OnIsSprintingChanged, OnIsGroundedChanged;
 
@@ -62,6 +65,8 @@ namespace CharacterSystems.Movement
                 _isGrounded = value;
             }
         }
+
+        private float _timeSinceGrounded = 0f;
 
         private bool _isJumpKeyPressed;
 
@@ -117,7 +122,14 @@ namespace CharacterSystems.Movement
         {
             // ground detection
             IsGrounded = Physics.Raycast(transform.position, Vector3.down, CharacterHeight);
-
+            if (IsGrounded)
+            {
+                _timeSinceGrounded = 0f;
+            }
+            else
+            {
+                _timeSinceGrounded += Time.deltaTime;
+            }
             // horizontal walking
             Vector3 moveVector = InputToWorldDirection(_inputs);
             moveVector *= IsSprinting ? SprintSpeed : WalkSpeed;
@@ -160,8 +172,7 @@ namespace CharacterSystems.Movement
 
         private bool CheckCanJump()
         {
-            // TODO: Could add multi-jumps here, or something
-            return IsGrounded;
+            return IsGrounded || _timeSinceGrounded < CoyoteTimeThreshold;
         }
 
         private Vector3 InputToWorldDirection(Vector2 input)
